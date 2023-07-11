@@ -29,3 +29,18 @@ app = Flask(__name__)
 def index():
     return "Hello World! This is my first API-call."
     
+@app.route('/Top5')
+def top_5():
+    return jsonify(books)
+
+@app.route('/Top5/<isbn>')
+def get_book_by_isbn(isbn):
+    for book in books:
+        if book['isbn'] == isbn:
+            return jsonify(book)
+
+@app.route('/Top5', methods=["POST"])
+def add_book():
+    new_book = request.get_json()
+    books.append(new_book)
+    return jsonify(new_book), 201
