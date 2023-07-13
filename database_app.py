@@ -32,14 +32,17 @@ def index():
 
     return jsonify(books)
 
+
 @app.route('/detail/<isbn>')
 def detail(isbn):
-    user = get_book(isbn)
-    book_dict = dict(user)
+    book = get_book(isbn)
+    book_dict = dict(book)
     return jsonify(book_dict)
 
+
+
 @app.route('/', methods=["POST"])
-def add_user():
+def add_book():
     new_book = request.get_json()
     isbn = new_book['isbn']
     title = new_book['isbn']
@@ -52,7 +55,9 @@ def add_user():
 
     response = {"message": f"{title} is added to the database"}
     return jsonify(response), 200
-        
+
+
+
 @app.route('/delete/<isbn>')
 def delete(isbn):
     user = get_book(isbn)
@@ -62,9 +67,12 @@ def delete(isbn):
     conn.close()
     return f"The user with isbn:{isbn} has been removed"
 
+
+
+
 @app.route('/edit/<isbn>', methods=["GET", "PUT"])
 def edit(isbn):
-    user = get_book(isbn)
+    book = get_book(isbn)
     book_changes = request.get_json()
     title = book_changes['title']
     writer = book_changes['writer']
