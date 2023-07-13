@@ -44,12 +44,12 @@ def detail(isbn):
 @app.route('/', methods=["POST"])
 def add_book():
     new_book = request.get_json()
-    isbn = new_book['isbn']
-    title = new_book['isbn']
+    isbn = new_book['ISBN']
+    title = new_book['title']
     writer = new_book['writer']
 
     conn = get_db_connection()
-    conn.execute("INSERT INTO users (isbn, title, writer) values(?,?,?)", (isbn, title, writer))
+    conn.execute("INSERT INTO users (ISBN, title, writer) values(?,?,?)", (isbn, title, writer))
     conn.commit()
     conn.close()
 
