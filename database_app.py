@@ -49,7 +49,7 @@ def add_book():
     writer = new_book['writer']
 
     conn = get_db_connection()
-    conn.execute("INSERT INTO users (ISBN, title, writer) values(?,?,?)", (isbn, title, writer))
+    conn.execute("INSERT INTO books (ISBN, title, writer) values(?,?,?)", (isbn, title, writer))
     conn.commit()
     conn.close()
 
@@ -60,12 +60,15 @@ def add_book():
 
 @app.route('/delete/<isbn>')
 def delete(isbn):
-    user = get_book(isbn)
-    conn = get_db_connection()
-    conn.execute('DELETE FROM books WHERE isbn=?', (isbn))
-    conn.commit()
-    conn.close()
-    return f"The user with isbn:{isbn} has been removed"
+   book = get_book(isbn)
+   conn = get_db_connection()
+   conn.execute('DELETE FROM books WHERE isbn=?', (isbn,))
+   if book is None:
+        conn.close()
+        abort(404)
+   conn.commit()
+   conn.close()
+   return f"The user with isbn:{isbn} has been removed"
 
 
 
