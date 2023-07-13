@@ -21,20 +21,20 @@ with open('schema.sql') as f:
 cur = connection.cursor()
 
 # Dummy data invoegen
-cur.execute("INSERT INTO books (isbn, title, writer) VALUES (?, ?, ?)",
+cur.execute("INSERT INTO books (ISBN, title, writer) VALUES (?, ?, ?)",
             ("9789020537963", "de kleur van colorado", "Rebecca Yarros" )
             )
 
-cur.execute("INSERT INTO books (isbn, title, writer) VALUES (?, ?, ?)",
-            ("9789024592470", "Onverbeterlijk", "Lisette Jonkman" )
+cur.execute("INSERT INTO books (ISBN, title, writer) VALUES (?, ?, ?)",
+            ('9789024592470', 'Onverbeterlijk', 'Lisette Jonkman' )
             )
 
-cur.execute("INSERT INTO books (isbn, title, writer) VALUES (?, ?, ?)",
-            ('Michiel', 27, 'https://randomuser.me/api/portraits/men/75.jpg' )
+cur.execute("INSERT INTO books (ISBN, title, writer) VALUES (?, ?, ?)",
+            ('9783499272134', 'Dochters van een nieuwe tijd', 'Carmen Korn')
             )
 
-cur.execute("INSERT INTO books (isbn, title, writer) VALUES (?, ?, ?)",
-            ('Sandra', 28, 'https://randomuser.me/api/portraits/women/75.jpg' )
+cur.execute("INSERT INTO books (ISBN, title, writer) VALUES (?, ?, ?)",
+            ('9789025454647', 'Het echte leven', 'Adeline Dieudonné')
             )
 
 # Daadwerkelijk Opslaan in de database en sluiten.
